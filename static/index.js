@@ -15,7 +15,7 @@ $(document).ready(() => {
             $("#restrictions").append('<input name="restrictions">');
             restrictions++;
         } else if(!$("#res-warn").length) {
-            $("#ingredients").append('<p id="res-warn">too much sauce bruh</p>');
+            $("#restrictions").append('<p id="res-warn">too much sauce bruh</p>');
         }
     });
 });
