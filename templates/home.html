@@ -27,18 +27,22 @@
                     <div class="row">
                         <div class="col">
                             <h3>Ingredients</h3>
-                            <div id="ingredients"></div>
-                            <button type="button" class="btn btn-dark" id="add">Add Ingredient</button>
+                            <div id="ingredients">
+                                <input name="ingredients">
+                            </div>
+                            <button type="button" class="btn btn-dark" id="add-ingredient">Add Ingredient</button>
                         </div>
                         <div class="col">
                             <h3>Restrictions</h3>
-                            <input name="restrictions">
+                            <div id="restrictions">
+                                <input name="restrictions">
+                            </div>
+                            <button type="button" class="btn btn-dark" id="add-restriction">Add Restriction</button>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-dark">Search</button>
                 </form>
                 <h5 class="col">{{name}}</h5>
-                <h5 class="col">{{link}}</h5>
                 <div id="like-button-container"></div>
             </div>
         </div>
