@@ -52,9 +52,7 @@ def main():
 @app.route("/", methods=['POST'])
 @app.route("/home", methods=['POST'])
 def post():
-    paramstring = ''
-
-    # This is what is actually important (what changed)
+    # Getting info from user
     r_includeIngredients = list(set(request.form.getlist('ingredients[]')))
     r_intolerances = list(set(request.form.getlist("restrictions[]")))
 
