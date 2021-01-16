@@ -52,13 +52,18 @@ def main():
 @app.route("/", methods=['POST'])
 @app.route("/home", methods=['POST'])
 def post():
-    r_includeIngredients = request.form['ingredients']
-    r_intolerances = request.form['restrictions']
+    paramstring = ''
+
+    # This is what is actually important (what changed)
+    r_includeIngredients = request.form.getlist('ingredients[]')
+    r_intolerances = request.form.getlist("restrictions[]")
+# >>>>>>> Stashed changes
 
     # Updating request params
     params['includeIngredients'] = r_includeIngredients
     params['intolerances'] = r_intolerances
 
+# <<<<<<< Updated upstream
     results = get_recipe(params)
 
     try:
@@ -73,9 +78,24 @@ def post():
     return render_template('home.html', image = image_url, name=top_result, calories=calories)
 
 # TODO: Use react to add more ingredients and make the page more interactive
+# =======
+    # Removing null params
+    for value in r_includeIngredients:
+        if value != '':
+            paramstring += ("&" + "includeIngredients" + "=" + value)
+
+    results = requests.get(search_url + paramstring + "&apiKey=" + api_key).json()
+    top_result = results["results"][0]
+    return render_template("home.html", name = top_result)
+
+# Carl TODO
 # TODO: Format results
 # TODO: Add more filters
-# TODO: Find a way to deploy the site
 # TODO: Make footer and about page
 # TODO: Make the site look more pleasant
-# TODO: Add help feature
+# TODO Optional: Add interactive elements to the page
+# TODO Optional: Add help feature
+
+# Aayush TODO
+# TODO: Fix search functionality
+# TODO: Find a way to deploy the site
