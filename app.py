@@ -63,6 +63,8 @@ def post():
 
     try:
         top_result = results['results'][0]['title']
+        calories = str(results['results'][0]['nutrition']['nutrients'][0]['amount']) + \
+                   + ' ' + results['results'][0]['nutrition']['nutrients'][0]['unit']
 
     except(IndexError):
         top_result = 'Sorry, we do not have a recipe matching your search criteria.'
