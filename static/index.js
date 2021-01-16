@@ -7,7 +7,7 @@ $(document).ready(() => {
             $("#ingredients").append('<input name="ingredients[]">');
             ingredients++;
         } else if(!$("#ing-warn").length) {
-            $("#ingredients").append('<p id="ing-warn">Search limited to 10 ingredients</p>');
+            $("#ingredients").append('<p id="ing-warn">Search limited to 20 ingredients</p>');
         }
     });
     $("#add-restriction").click(() => {
@@ -15,7 +15,7 @@ $(document).ready(() => {
             $("#restrictions").append('<input name="restrictions[]">');
             restrictions++;
         } else if(!$("#res-warn").length) {
-            $("#restrictions").append('<p id="res-warn">Search limited to 10 restrictions</p>');
+            $("#restrictions").append('<p id="res-warn">Search limited to 20 restrictions</p>');
         }
     });
 });
