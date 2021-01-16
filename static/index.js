@@ -7,7 +7,7 @@ $(document).ready(() => {
             $("#ingredients").append('<input name="ingredients">');
             ingredients++;
         } else if(!$("#ing-warn").length) {
-            $("#ingredients").append('<p id="ing-warn">too much sauce bruh</p>');
+            $("#ingredients").append('<p id="ing-warn">too much data!</p>');
         }
     });
     $("#add-restriction").click(() => {
@@ -15,7 +15,7 @@ $(document).ready(() => {
             $("#restrictions").append('<input name="restrictions">');
             restrictions++;
         } else if(!$("#res-warn").length) {
-            $("#restrictions").append('<p id="res-warn">too much sauce bruh</p>');
+            $("#restrictions").append('<p id="res-warn">too much data!</p>');
         }
     });
 });
