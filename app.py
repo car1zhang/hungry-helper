@@ -64,12 +64,13 @@ def post():
     try:
         top_result = results['results'][0]['title']
         calories = str(results['results'][0]['nutrition']['nutrients'][0]['amount']) + \
-                   + ' ' + results['results'][0]['nutrition']['nutrients'][0]['unit']
+                   ' ' + results['results'][0]['nutrition']['nutrients'][0]['unit']
+        image_url = results['results'][0]['image']
 
     except(IndexError):
         top_result = 'Sorry, we do not have a recipe matching your search criteria.'
 
-    return render_template('home.html', name=top_result)
+    return render_template('home.html', image = image_url, name=top_result, calories=calories)
 
 # TODO: Use react to add more ingredients and make the page more interactive
 # TODO: Format results
