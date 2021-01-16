@@ -30,6 +30,19 @@ params = {
 }
 
 
+def get_recipe(params):
+    paramstring = ''
+
+    # Removing null params
+    for key, value in params.items():
+        if value != '':
+            paramstring += ("&" + key + "=" + value)
+
+    results = requests.get(search_url + paramstring + "&apiKey=" + api_key).json()
+
+    return results
+
+
 @app.route("/")
 @app.route("/home")
 def main():
@@ -39,8 +52,6 @@ def main():
 @app.route("/", methods=["POST"])
 @app.route("/home", methods=["POST"])
 def post():
-    paramstring = ''
-
     r_includeIngredients = request.form["ingredients"]
     r_intolerances = request.form["restrictions"]
 
@@ -48,20 +59,15 @@ def post():
     params['includeIngredients'] = r_includeIngredients
     params['intolerances'] = r_intolerances
 
-    # Removing null params
-    for key, value in params.items():
-        if value != '':
-            paramstring += ("&" + key + "=" + value)
-
-    results = requests.get(search_url + paramstring + "&apiKey=" + api_key).json()
+    results = get_recipe(params, search=True)
 
     try:
         top_result = results["results"][0]["title"]
 
     except(IndexError):
         top_result = ['No such recipe exists']
-    return render_template("home.html", name=top_result)
 
+    return render_template("home.html", name=top_result)
 
 # TODO: Use react to add more ingredients and make the page more interactive
 # TODO: Format results
