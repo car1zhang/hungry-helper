@@ -6,7 +6,11 @@ app = Flask(__name__)
 # Api info
 search_url = 'https://api.spoonacular.com/recipes/complexSearch?'
 id_url = "https://api.spoonacular.com/recipes/"
+<<<<<<< HEAD
 api_key = '7daff3f13857445097e41523fc01d44a'  # other key: 58dec5f444fb4942b7a123310f0eb653
+=======
+api_key = '57124f77baee4ec4b7941512d5819c8c'  # other key: 09e6cdabd57e434ca76916051f205189 , 58dec5f444fb4942b7a123310f0eb653
+>>>>>>> 717c76e33817ffe7c279dbb0d79e1c877bdb90f4
 
 # Params for query
 params = {
@@ -39,6 +43,7 @@ def main():
 @app.route("/home", methods=["POST"])
 def post():
     paramstring = ''
+
     r_includeIngredients = request.form["ingredients"]
     r_intolerances = request.form["restrictions"]
 
@@ -52,8 +57,24 @@ def post():
             paramstring += ("&" + key + "=" + value)
 
     results = requests.get(search_url + paramstring + "&apiKey=" + api_key).json()
+<<<<<<< HEAD
     top_result = results["results"][0]["title"]
     return render_template("home.html", name=top_result)
+=======
+
+    top_result = results["results"][0]
+    top_name = top_result["title"]
+
+    return render_template("home.html", name=top_name, link=top_result)
+
+    r_ingredients = request.form["ingredients"]
+    r_restrictions = request.form["restrictions"]
+
+    results = requests.get(search_url + "includeIngredients=" + r_ingredients + "&excludeIngredients=" + r_restrictions + "&apiKey=" + api_key).json()["results"]
+    top_result = (results[0] if len(results) else None)
+    top_name = (top_result["title"] if top_result else None)
+    return render_template("home.html", name = r_ingredients, link = top_result)
+>>>>>>> 717c76e33817ffe7c279dbb0d79e1c877bdb90f4
 
 # TODO: Use react to add more ingredients and make the page more interactive
 # TODO: Format results
