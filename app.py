@@ -38,8 +38,8 @@ def main():
 @app.route("/", methods=["POST"])
 @app.route("/home", methods=["POST"])
 def post():
-<<<<<<< Updated upstream
     paramstring = ''
+
     r_includeIngredients = request.form["ingredients"]
     r_intolerances = request.form["restrictions"]
 
@@ -56,15 +56,16 @@ def post():
 
     top_result = results["results"][0]
     top_name = top_result["title"]
+
     return render_template("home.html", name=top_name, link=top_result)
-=======
+
     r_ingredients = request.form["ingredients"]
     r_restrictions = request.form["restrictions"]
+
     results = requests.get(search_url + "includeIngredients=" + r_ingredients + "&excludeIngredients=" + r_restrictions + "&apiKey=" + api_key).json()["results"]
     top_result = (results[0] if len(results) else None)
     top_name = (top_result["title"] if top_result else None)
     return render_template("home.html", name = r_ingredients, link = top_result)
->>>>>>> Stashed changes
 
 # TODO: Use react to add more ingredients and make the page more interactive
 # TODO: Format results
