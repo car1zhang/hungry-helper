@@ -17,31 +17,32 @@
         </nav>
         <div class="bg-img">
             <div class="color-overlay">
-                <h1 class="text-center" id="main-title"><b>Hungry?</b></h1>
-                <h3 class="text-center" id="title-text">We can help you out! Just enter in any criteria you have and we'll find a recipe just for you!</h3>
+              <h1 class="text-center" id="main-title"><strong>Hungry?</strong></h1>
+              <h3 class="text-center" id="title-text">We can help you out! Just enter in any criteria you have and we'll find a recipe just for you!</h3>
             </div>
         </div>
         <div class="container">
-            <div class="jumbotron form">
-                <form method="POST">
-                    <div class="row">
+          <div class="jumbotron form">
+              <form method="POST">
+                <div class="row">
+                  <div class="col">
+<h3>Ingredients</h3>
+<div id="ingredients"></div>
+                    <button type="button" class="btn btn-dark" id="add">Add Ingredient</button>
+</div>
+                  <b></b>
                         <div class="col">
-                            <h3>Ingredients</h3>
-                            <div id="ingredients"></div>
-                            <button type="button" class="btn btn-dark" id="add">Add Ingredient</button>
-                        </div>
-                        <div class="col">
-                            <h3>Restrictions</h3>
-                            <input name="restrictions">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-dark">Search</button>
-                </form>
+  <h3>Dietary restrictions</h3>
+                          <button type="button" class="btn btn-dark" id="add2">Add restrictions</button>
+</div>
+                </div>
+</form>
+                <button type="submit" class="btn btn-light">Search for recipes</button>
                 <h5 class="col">{{name}}</h5>
                 <h5 class="col">{{link}}</h5>
                 <div id="like-button-container"></div>
             </div>
-        </div>
+</div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="{{ url_for('static', filename = 'index.js') }}"></script>
     </body>
