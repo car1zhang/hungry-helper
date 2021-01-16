@@ -1,0 +1,37 @@
+#main-title {
+    font: small-caps bold 150px/1 sans-serif;
+    color: #DEB841;
+}
+#title-text {
+    color: #D8DBE2;
+}
+
+body {
+    background-color: #DE9E36;
+}
+
+.bg-img {
+    background-image: url("https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 600px;
+}
+
+.color-overlay {
+    background-color: rgba(55, 50, 62, 0.8);
+    background-position: center center;
+    height: 600px;
+    padding: 200px;
+}
+
+.navbar-primary {
+    background-color: #DE9E36;
+    opacity: 1;
+    padding: 30px;
+}
+
+.form {
+    margin-top: 60px;
+    background-color: #D8DBE2;
+}

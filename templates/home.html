@@ -1,6 +1,7 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <title>Hungry Helper</title>
 
@@ -9,7 +10,36 @@
         <link rel="stylesheet" href="{{ url_for('static', filename = 'main.css') }}">
     </head>
     <body>
-        <p>{{data}}</p>
+        <nav class="navbar navbar-fixed-top navbar-dark navbar-primary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">Hungry Helper</a>
+            </div>
+        </nav>
+        <div class="bg-img">
+            <div class="color-overlay">
+                <h1 class="text-center" id="main-title"><b>Hungry?</b></h1>
+                <h3 class="text-center" id="title-text">We can help you out! Just enter in any criteria you have and we'll find a recipe just for you!</h3>
+            </div>
+        </div>
+        <div class="container">
+            <div class="jumbotron form">
+                <form method="POST">
+                    <div class="row">
+                        <div class="col">
+                            <h3>Ingredients</h3>
+                            <input name="ingredients">
+                            <h5>{{ingredients}}</h5>
+                        </div>
+                        <div class="col">
+                            <h3>Restrictions</h3>
+                            <input name="restrictions">
+                            <h5>{{restrictions}}</h5>
+                        </div>
+                    </div>
+                    <input type="submit">
+                </form>
+            </div>
+        </div>
         <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
         <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
         <script src="{{ url_for('static', filename = 'index.js') }}"></script>
