@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename = 'main.css') }}">
     </head>
     <body>
-        <nav class="navbar navbar-fixed-top navbar-dark navbar-primary">
+        <nav class="navbar sticky-top navbar-dark navbar-primary">
             <div class="container-fluid">
               <a class="navbar-brand" href="#">Hungry Helper</a>
             </div>
@@ -27,21 +27,22 @@
                     <div class="row">
                         <div class="col">
                             <h3>Ingredients</h3>
-                            <input name="ingredients">
+                            <div id="ingredients"></div>
+                            <button type="button" class="btn btn-dark" id="add">Add Ingredient</button>
                         </div>
                         <div class="col">
                             <h3>Restrictions</h3>
                             <input name="restrictions">
                         </div>
                     </div>
-                    <input type="submit">
+                    <button type="submit" class="btn btn-dark">Search</button>
                 </form>
                 <h5 class="col">{{name}}</h5>
                 <h5 class="col">{{link}}</h5>
+                <div id="like-button-container"></div>
             </div>
         </div>
-        <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-        <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="{{ url_for('static', filename = 'index.js') }}"></script>
     </body>
 </html>
