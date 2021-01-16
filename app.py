@@ -3,9 +3,10 @@ import requests, json
 
 app = Flask(__name__)
 
-frequest = ''
-url = 'https://api.spoonacular.com/recipes/complexSearch?'
-api_key = '58dec5f444fb4942b7a123310f0eb653'
+f_request = ''
+search_url = 'https://api.spoonacular.com/recipes/complexSearch?'
+id_url = "https://api.spoonacular.com/recipes/"
+api_key = '09e6cdabd57e434ca76916051f205189'
 
 use_query = True
 use_cuisine = False
@@ -43,55 +44,56 @@ params = {
     'number': '1'
 }
 
+# what if use_query is false???
 if use_query:
-    frequest = url + "query=" + params['query']
+    f_request = search_url + "query=" + params['query']
 
 if use_cuisine:
-    frequest += ("&cuisine=" + params['cuisine'])
+    f_request += ("&cuisine=" + params['cuisine'])
 
 if use_diet:
-    frequest += ("&diet=" + params['diet'])
+    f_request += ("&diet=" + params['diet'])
 
 if use_intolerances:
-    frequest += ("&intolerances=" + params['intolerances'])
+    f_request += ("&intolerances=" + params['intolerances'])
 
 if use_includeIngredients:
-    frequest += ("&includeIngredients=" + params['includeIngredients'])
+    f_request += ("&includeIngredients=" + params['includeIngredients'])
 
 if use_excludeIngredients:
-    frequest += ("&excludeIngredients=" + params['excludeIngredients'])
+    f_request += ("&excludeIngredients=" + params['excludeIngredients'])
 
 if use_type:
-    frequest += ("&type=" + params['type'])
+    f_request += ("&type=" + params['type'])
 
 if use_instructionsRequired:
-    frequest += ("&instructionsRequired=" + params['instructionsRequired'])
+    f_request += ("&instructionsRequired=" + params['instructionsRequired'])
 
 if use_fillIngredients:
-    frequest += ("&fillIngredients=" + params['fillIngredients'])
+    f_request += ("&fillIngredients=" + params['fillIngredients'])
 
 if use_addRecipeInformation:
-    frequest += ("&addRecipeInformation=" + params['addRecipeInformation'])
+    f_request += ("&addRecipeInformation=" + params['addRecipeInformation'])
 
 if use_addRecipeNutrition:
-    frequest += ("&addRecipeNutrition=" + params['addRecipeNutrition'])
+    f_request += ("&addRecipeNutrition=" + params['addRecipeNutrition'])
 
 if use_maxReadyTime:
-    frequest += ("&maxReadyTime=" + params['maxReadyTime'])
+    f_request += ("&maxReadyTime=" + params['maxReadyTime'])
 
 if use_ignorePantry:
-    frequest += ("&ignorePantry=" + params['ignorePantry'])
+    f_request += ("&ignorePantry=" + params['ignorePantry'])
 
 if use_sort:
-    frequest += ("&sort=" + params['sort'])
+    f_request += ("&sort=" + params['sort'])
 
 if use_maxCalories:
-    frequest += ("&maxCalories=" + params['maxCalories'])
+    f_request += ("&maxCalories=" + params['maxCalories'])
 
 if use_number:
-    frequest += ("&number=" + params['number'])
+    f_request += ("&number=" + params['number'])
 
-frequest += ("&apiKey=" + api_key)
+f_request += ("&apiKey=" + api_key)
 
 @app.route("/")
 @app.route("/home")
@@ -101,4 +103,17 @@ def main():
 @app.route("/", methods=["POST"])
 @app.route("/home", methods=["POST"])
 def post():
-    return render_template("home.html", ingredients = request.form["ingredients"], restrictions = request.form["restrictions"])
+    r_ingredients = request.form["ingredients"]
+    r_restrictions = request.form["restrictions"]
+    results = requests.get(search_url + "includeIngredients=" + r_ingredients + "&excludeIngredients=" + r_restrictions + "&apiKey=" + api_key).json()
+    top_result = results["results"][0]
+    top_name = top_result["title"]
+    return render_template("home.html", name = top_name, link = top_result)
+
+# TODO: Use react to add more ingredients and make the page more interactive
+# TODO: Format results
+# TODO: Add more filters
+# TODO: Find a way to deploy the site
+# TODO: Make footer and about page
+# TODO: Make the site look more pleasant
+# TODO: Add help feature
