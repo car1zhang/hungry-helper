@@ -6,6 +6,7 @@ app = Flask(__name__)
 # Api info
 search_url = 'https://api.spoonacular.com/recipes/complexSearch?'
 id_url = "https://api.spoonacular.com/recipes/"
+
 api_key = '7daff3f13857445097e41523fc01d44a'  # other key: 58dec5f444fb4942b7a123310f0eb653
 
 # Params for query
@@ -55,6 +56,7 @@ def post():
     results = requests.get(search_url + paramstring + "&apiKey=" + api_key).json()
     top_result = results["results"][0]["title"]
     return render_template("home.html", name=top_result)
+
 
 # TODO: Use react to add more ingredients and make the page more interactive
 # TODO: Format results
