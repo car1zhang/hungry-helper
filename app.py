@@ -54,7 +54,12 @@ def post():
             paramstring += ("&" + key + "=" + value)
 
     results = requests.get(search_url + paramstring + "&apiKey=" + api_key).json()
-    top_result = results["results"][0]["title"]
+
+    try:
+        top_result = results["results"][0]["title"]
+
+    except(IndexError):
+        top_result = ['No such recipe exists']
     return render_template("home.html", name=top_result)
 
 
