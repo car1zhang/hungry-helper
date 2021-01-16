@@ -1,0 +1,26 @@
+{
+  "name": "hungry-helper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.py",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yelll0/hungry-helper.git"
+  },
+  "author": "Carl Zhang, Aayush Panda, Allen Yang, James",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Yelll0/hungry-helper/issues"
+  },
+  "homepage": "https://github.com/Yelll0/hungry-helper#readme",
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "flask": "^1.1.2",
+    "react": "^17.0.1",
+    "react-bootstrap": "^1.4.3",
+    "react-dom": "^17.0.1"
+  }
+}
