@@ -59,7 +59,7 @@ def post():
     params['includeIngredients'] = r_includeIngredients
     params['intolerances'] = r_intolerances
 
-    results = get_recipe(params, search=True)
+    results = get_recipe(params)
 
     try:
         top_result = results["results"][0]["title"]
