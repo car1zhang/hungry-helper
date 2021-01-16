@@ -52,9 +52,6 @@ def main():
 @app.route("/", methods=['POST'])
 @app.route("/home", methods=['POST'])
 def post():
-    paramstring = ''
-
-    # This is what is actually important (what changed)
 
     r_includeIngredients = list(set(request.form.getlist('ingredients[]')))
     r_intolerances = list(set(request.form.getlist("restrictions[]")))
@@ -95,7 +92,7 @@ def post():
         top_result = 'Sorry, we do not have a recipe matching your search criteria. \n Please check your spelling and make sure all information was entered correctly'
 
     return render_template('home.html', image=image_url, name=top_result, calories=calories)
-    
+
 # Carl TODO
 # TODO: Format results
 # TODO: Add more filters
@@ -104,6 +101,4 @@ def post():
 # TODO Optional: Add interactive elements to the page
 # TODO Optional: Add help feature
 
-# Aayush TODO
-# TODO: Fix search functionality
-# TODO: Find a way to deploy the site
+# Hosted by ngrok  at http://c08dbd1b8351.ngrok.io/
