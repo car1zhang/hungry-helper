@@ -64,9 +64,9 @@ def post():
     ingredientList = r_includeIngredients[0]
 
     for n in range(1, len(r_includeIngredients)):
-        ingredientList += r_includeIngredients[n]
+        ingredientList += (',' + r_includeIngredients[n])
 
-    intoleranceList = r_intolerances[0]
+    intoleranceList = (',' + r_intolerances[0])
 
     for n in range(1, len(r_intolerances)):
         ingredientList += r_intolerances[n]
