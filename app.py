@@ -6,7 +6,7 @@ app = Flask(__name__)
 # Api info
 search_url = 'https://api.spoonacular.com/recipes/complexSearch?'
 id_url = "https://api.spoonacular.com/recipes/"
-api_key = '09e6cdabd57e434ca76916051f205189'  # other key: 58dec5f444fb4942b7a123310f0eb653
+api_key = '58dec5f444fb4942b7a123310f0eb653'  # other key: 09e6cdabd57e434ca76916051f205189
 
 # Params for query
 params = {
