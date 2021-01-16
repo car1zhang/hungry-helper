@@ -55,38 +55,51 @@ def post():
     paramstring = ''
 
     # This is what is actually important (what changed)
-    r_includeIngredients = request.form.getlist('ingredients[]')
-    r_intolerances = request.form.getlist("restrictions[]")
-# >>>>>>> Stashed changes
+    r_includeIngredients = list(set(request.form.getlist('ingredients[]')))
+    r_intolerances = list(set(request.form.getlist("restrictions[]")))
+
+    ingredientList = ''
+    intoleranceList = ''
+
+    ingredientList = r_includeIngredients[0]
+
+    for n in range(1, len(r_includeIngredients)):
+        ingredientList += r_includeIngredients[n]
+
+    intoleranceList = r_intolerances[0]
+
+    for n in range(1, len(r_intolerances)):
+        ingredientList += r_intolerances[n]
+
+    # >>>>>>> Stashed changes
 
     # Updating request params
-    params['includeIngredients'] = r_includeIngredients
-    params['intolerances'] = r_intolerances
+    params['includeIngredients'] = ingredientList
+    params['intolerances'] = intoleranceList
 
-# <<<<<<< Updated upstream
+    # <<<<<<< Updated upstream
     results = get_recipe(params)
+
+    top_result = ''
+    calories = ''
+    image_url = ''
 
     try:
         top_result = results['results'][0]['title']
+
         calories = str(results['results'][0]['nutrition']['nutrients'][0]['amount']) + \
                    ' ' + results['results'][0]['nutrition']['nutrients'][0]['unit']
+
         image_url = results['results'][0]['image']
 
     except(IndexError):
-        top_result = 'Sorry, we do not have a recipe matching your search criteria.'
+        top_result = 'Sorry, we do not have a recipe matching your search criteria. \n Please check your spelling and make sure all information was entered correctly'
 
-    return render_template('home.html', image = image_url, name=top_result, calories=calories)
+    return render_template('home.html', image=image_url, name=top_result, calories=calories)
 
-# TODO: Use react to add more ingredients and make the page more interactive
-# =======
+    # TODO: Use react to add more ingredients and make the page more interactive
+    # =======
     # Removing null params
-    for value in r_includeIngredients:
-        if value != '':
-            paramstring += ("&" + "includeIngredients" + "=" + value)
-
-    results = requests.get(search_url + paramstring + "&apiKey=" + api_key).json()
-    top_result = results["results"][0]
-    return render_template("home.html", name = top_result)
 
 # Carl TODO
 # TODO: Format results
