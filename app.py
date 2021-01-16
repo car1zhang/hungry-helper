@@ -97,7 +97,3 @@ def post():
 # TODO: Make the site look more pleasant
 # TODO Optional: Add interactive elements to the page
 # TODO Optional: Add help feature
-
-# Aayush TODO
-# TODO: Fix search functionality
-# TODO: Find a way to deploy the site
