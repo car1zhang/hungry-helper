@@ -7,7 +7,7 @@ app = Flask(__name__)
 search_url = 'https://api.spoonacular.com/recipes/complexSearch?'
 id_url = 'https://api.spoonacular.com/recipes/'
 empty_image_url = 'https://t4.ftcdn.net/jpg/01/92/21/99/360_F_192219965_or6uDv1LE5PvjjbTFxjpt6xM5OzoWvWA.jpg'
-api_key = '58dec5f444fb4942b7a123310f0eb653'  # alternate key: 58dec5f444fb4942b7a123310f0eb653
+api_key = 'f53cb2ef6e4c4d0296e183a1288de133'  # alternate key: 58dec5f444fb4942b7a123310f0eb653
 
 # Params for query
 params = {

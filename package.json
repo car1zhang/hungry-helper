@@ -19,8 +19,6 @@
   "dependencies": {
     "bootstrap": "^4.5.3",
     "flask": "^1.1.2",
-    "react": "^17.0.1",
-    "react-bootstrap": "^1.4.3",
-    "react-dom": "^17.0.1"
+    "jquery": "^3.5.1"
   }
 }
