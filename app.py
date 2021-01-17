@@ -90,15 +90,16 @@ def post():
         calories = str(results['results'][0]['nutrition']['nutrients'][0]['amount']) + \
                    ' ' + results['results'][0]['nutrition']['nutrients'][0]['unit']
 
-        title = result['title']
+        recipe_title = result['title']
         image_url = result['image']
         url = result['sourceUrl']
+
     except(IndexError):
         return render_template('result.html', code=2)
     except(KeyError):
         return render_template('result.html', code=2)
 
-    return render_template('result.html', code=0, image=image_url, name=recipe_title, url=url)
+    return render_template('result.html', code=0, image=image_url, name=recipe_title + ' (' + calories + ')', url=url)
 
 # Carl TODO
 # TODO: Clear button
