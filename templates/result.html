@@ -19,20 +19,54 @@
                 <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename = 'HungryHelper.png') }}" alt="Hungry Helper"></a>
             </div>
         </nav>
+        <div class="row content result-title-row">
+            {% if code == 0 %}
+                <h1 class="c-lighty-text" id="result-title"><b>We got your recipe!</b></h1>
+            {% else %}
+                <h1 class="c-lighty-text" id="result-title"><b>We got nothing. Sorry!</b></h1>
+            {% endif %}
+        </div>
         <div class="jumbotron content c-light-bg result">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h3 class="c-darky-text text-result"><b>Roast Pork Florentine With Pomegranate Sauce</b></h3>
+            {% if code == 0 %}
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h3 class="c-darky-text text-result"><b>{{ name }}</b></h3>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="{{ image }}" alt="{{ name }}" class="picture float-right">
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <a href="{{ url }}" class="btn btn-light c-darky-bg c-light-text" id="main-btn"><b>Instructions</b></a>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <a href="{{ url }}" class="btn btn-light c-darky-bg c-light-text" id="main-btn"><b>Instructions</b></a>
+                    </div>
+                    <div class="col-lg-6  text-right">
+                        <a href="{{ url_for('home') }}" class="btn btn-light c-dark-bg c-light-text" id="main-btn"><b>Back to Search</b></a>
+                    </div>
                 </div>
-                <div class="col-lg-6  text-right">
-                    <a href="{{ url_for('home') }}" class="btn btn-light c-dark-bg c-light-text" id="main-btn"><b>Back to Search</b></a>
+            {% elif code == 1 %}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="c-darky-text text-result"><b>Enter some search criteria you lazy ass bum.</b></h3>
+                    </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <a href="{{ url_for('home') }}" class="btn btn-light c-dark-bg c-light-text" id="main-btn"><b>Back to Search</b></a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="c-darky-text text-result"><b>Sorry, we don't have a recipe to match your search criteria. Please check your spelling and make sure all information was entered correctly.</b></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <a href="{{ url_for('home') }}" class="btn btn-light c-dark-bg c-light-text" id="main-btn"><b>Back to Search</b></a>
+                    </div>
+                </div>
+            {%endif%}
         </div>
     </body>
 </html>

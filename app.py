@@ -7,7 +7,7 @@ app = Flask(__name__)
 search_url = 'https://api.spoonacular.com/recipes/complexSearch?'
 id_url = 'https://api.spoonacular.com/recipes/'
 empty_image_url = 'https://t4.ftcdn.net/jpg/01/92/21/99/360_F_192219965_or6uDv1LE5PvjjbTFxjpt6xM5OzoWvWA.jpg'
-api_key = '58dec5f444fb4942b7a123310f0eb653'  # alternate key: 58dec5f444fb4942b7a123310f0eb653 5340d48e470642c9822787b76b09fb1d
+api_key = '58dec5f444fb4942b7a123310f0eb653'  # alternate key: 58dec5f444fb4942b7a123310f0eb653
 
 # Params for query
 params = {
@@ -93,21 +93,15 @@ def post():
         title = result['title']
         image_url = result['image']
         url = result['sourceUrl']
-
-        recipe_title = title + ' (' + calories + ')'
-
-        timeToMake = str(results['results'][0]['readyInMinutes'])
-
     except(IndexError):
+        return render_template('result.html', code=2)
+    except(KeyError):
         return render_template('result.html', code=2)
 
     return render_template('result.html', code=0, image=image_url, name=recipe_title, url=url)
 
 # Carl TODO
-# TODO: Format results
 # TODO: Clear button
 # TODO: Delete button
-# TODO: Search by exclusive ingredients
 # TODO Optional: Make footer and about page
-# TODO Optional: Add interactive elements to the page
 # TODO Optional: Add help feature
