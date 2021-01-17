@@ -7,7 +7,7 @@ app = Flask(__name__)
 search_url = 'https://api.spoonacular.com/recipes/complexSearch?'
 id_url = 'https://api.spoonacular.com/recipes/'
 
-api_key = '7daff3f13857445097e41523fc01d44a'  # other key: 58dec5f444fb4942b7a123310f0eb653
+api_key = '5340d48e470642c9822787b76b09fb1d'  # alternate key: 58dec5f444fb4942b7a123310f0eb653
 
 # Params for query
 params = {
@@ -24,7 +24,7 @@ params = {
     'addRecipeNutrition': '',
     'maxReadyTime': '',
     'ignorePantry': 'True',
-    'sort': 'calories',
+    'sort': 'meta-score',
     'maxCalories': '',
     'number': '1'
 }
@@ -47,7 +47,6 @@ def get_recipe(params):
 @app.route('/home')
 def main():
     return render_template('home.html', input='')
-
 
 @app.route("/", methods=['POST'])
 @app.route("/home", methods=['POST'])
@@ -96,8 +95,7 @@ def post():
 # Carl TODO
 # TODO: Format results
 # TODO: Add more filters
-# TODO: Make footer and about page
-# TODO: Make the site look more pleasant
+# TODO Optional: Make footer and about page
 # TODO Optional: Add interactive elements to the page
 # TODO Optional: Add help feature
 

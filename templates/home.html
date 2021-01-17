@@ -7,47 +7,68 @@
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab+Highlight:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300;400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ url_for('static', filename = 'main.css') }}">
     </head>
-    <body>
-        <nav class="navbar sticky-top navbar-dark navbar-primary">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">Hungry Helper</a>
+    <body class="c-dark-bg">
+        <nav class="navbar sticky-top navbar-dark c-darky-bg">
+            <div class="content">
+                <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename = 'HungryHelper.png') }}" alt="Hungry Helper"></a>
             </div>
         </nav>
-        <div class="bg-img">
+        <div class="title">
             <div class="color-overlay">
-              <h1 class="text-center" id="main-title"><strong>Hungry?</strong></h1>
-              <h3 class="text-center" id="title-text">We can help you out! Just enter in any criteria you have and we'll find a recipe just for you!</h3>
+                <h1 class="text-center c-lighty-text" id="main-title"><b>HUNGRY?</b></h1>
+                <p class="text-center text-reg c-light-text" id="main-subtitle">We can help you out! Enter any criteria you have and the Hungry Helper will find a recipe just for you!</h3>
             </div>
         </div>
-        <div class="container">
-          <div class="jumbotron form">
-              <form method="POST">
+        <div class="jumbotron content form c-light-bg">
+            <form method="POST">
                 <div class="row">
-                <div class="col">
-                  <div class="col">
-                            <h3>Ingredients</h3>
-                            <div id="ingredients">
-                                <input name="ingredients[]">
-                            </div>
-                            <button type="button" class="btn btn-dark" id="add-ingredient">Add Ingredient</button>
-                        </div>
-                        <div class="col">
-                            <h3>Restrictions</h3>
-                            <div id="restrictions">
-                                <input name="restrictions[]">
-                            </div>
-                            <button type="button" class="btn btn-dark" id="add-restriction">Add Restriction</button>
-                        </div>
+                    <div class="col-lg-6">
+                        <h3 class="text-title c-darky-text"><b>Craving anything?</b></h3>
+                        <input name="query">
                     </div>
-                    <button type="submit" class="btn btn-dark">Search</button>
-                </form>
-                <img src="{{image}}" alt="{{image}}">
-                <h5 class="col">{{name}}</h5>
-                <h5 class="col">{{calories}}</h5>
-                <div id="like-button-container"></div>
-            </div>
+                    <div class="col-lg-6">
+                        <h3 class="text-title c-darky-text text-right"><b>Diet</b></h3>
+                        <select name="diet" id="diet" class="float-right">
+                            <option value=""></option>
+                            <option value="">Omnivorous</option>
+                            <option value="gluten-free">Gluten Free</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="vegan">Vegan</option>
+                            <option value="ketogenic">Ketogenic</option>
+                            <option value="paleo">Paleo</option>
+                            <option value="pescetarian">Pescetarian</option>
+                            <option value="primal">Primal</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h3 class="text-title c-darky-text"><b>Ingredients</b></h3>
+                        <div id="ingredients">
+                            <input name="ingredients[]">
+                        </div>
+                        <button type="button" class="btn btn-light text-butt c-light-text c-dark-bg" id="add-ingredient">Add Ingredient</button>
+                    </div>
+                    <div class="col-lg-6">
+                        <h3 class="text-title c-darky-text text-right"><b>Restrictions</b></h3>
+                        <div id="restrictions" class="text-right">
+                            <input name="restrictions[]">
+                        </div>
+                        <button type="button" class="float-right btn btn-light text-butt c-light-text c-dark-bg" id="add-restriction">Add Restriction</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="submit" class="btn btn-light c-dark-bg c-light-text" id="search-btn"><b>Search</b></button>
+                </div>
+            </form>
+            <p class="text-reg c-dark-text">{{name}}</p>
+            <img src="{{image}}" alt="{{name}}">
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="{{ url_for('static', filename = 'index.js') }}"></script>
