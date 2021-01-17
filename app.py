@@ -94,12 +94,12 @@ def post():
         image_url = result['image']
         url = result['sourceUrl']
 
-        name = title + '(' + calories + ')'
+        recipe_title = title + '(' + calories + ')'
 
     except(IndexError):
         return render_template('result.html', code=2)
 
-    return render_template('result.html', code=0, image=image_url, name=name, url=url)
+    return render_template('result.html', code=0, image=image_url, name=recipe_title, url=url)
 
 # Carl TODO
 # TODO: Format results
