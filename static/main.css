@@ -45,6 +45,10 @@ img[alt="Hungry Helper"] {
     margin-bottom: 40px;
 }
 
+.bottom-row {
+    margin-bottom: 0px;
+}
+
 .result {
     margin-top: 0px;
     margin-bottom: 70px;

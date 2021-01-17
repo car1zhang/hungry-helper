@@ -102,9 +102,7 @@ def post():
     except(KeyError):
         return render_template('result.html', code=2)
 
-    return render_template('result.html', code=0, image=image_url, name=title + ' (' + calories + ')', time = timeToMake, url=url)
-
-    return render_template('result.html', code=0, image=image_url, name=title, url=url)
+    return render_template('result.html', code=0, image=image_url, name=title, time = timeToMake, url=url, cals=calories)
 
 # Carl TODO
 # TODO: Clear button
