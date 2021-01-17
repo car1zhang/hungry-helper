@@ -73,9 +73,6 @@ def post():
     params['diet'] = r_diet
     params['query'] = r_query
 
-    if len(ingredientList) == 0 and len(intoleranceList) == 0 and r_diet == 0 and r_query == 0:
-        return render_template('home.html', name='Please enter some search criteria')
-
     # Getting recipes from api
     results = get_recipe(params)
 
@@ -94,7 +91,10 @@ def post():
     except(IndexError):
         top_result = 'Sorry, we do not have a recipe matching your search criteria. \n Please check your spelling and make sure all information was entered correctly'
 
-    return render_template('home.html', image=image_url, name=top_result + '(' + calories + ')')
+    if len(ingredientList) == 0 and len(intoleranceList) == 0 and r_diet == 0 and r_query == 0:
+        return render_template('home.html', name='Please enter some search criteria')
+
+    return render_template('home.html', image=image_url, name=top_result + ' (' + calories + ')')
 
 # Carl TODO
 # TODO: Format results
