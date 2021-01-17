@@ -15,18 +15,18 @@ params = {
     'cuisine': '',
     'diet': '',
     'intolerances': '',
-    'includeIngredients': '',
+    'includeIngredients': 'egg,bread',
     'excludeIngredients': '',
     'type': '',
     'instructionsRequired': 'True',
     'fillIngredients': 'True',
-    'addRecipeInformation': 'True',  # TODO
-    'addRecipeNutrition': 'True',  # TODO
-    'maxReadyTime': '',  # TODO
+    'addRecipeInformation': 'True',
+    'addRecipeNutrition': 'True',
+    'maxReadyTime': '',
     'ignorePantry': 'True',
     'sort': 'max-used-ingredients',  # or min-missing-ingredients
-    'maxCalories': '',
-    'number': '1'
+    'maxCalories': '1000',
+    'number': '2'
 }
 
 
@@ -40,7 +40,7 @@ def get_recipe(params):
 
     results = requests.get(search_url + paramstring + '&apiKey=' + api_key).json()
 
-    # results = requests.get(search_url + paramstring + '&apiKey=' + api_key).json()
+    # results = requests.get(search_url + paramstring + '&apiKey=' + api_key).url
     # print(results)
 
     return results
@@ -61,6 +61,7 @@ def post():
     r_intolerances = list(set(request.form.getlist("restrictions[]")))
     r_diet = request.form.get('diet')
     r_query = request.form.get('query')
+    r_maxcal = request.form.get('maxcal')
 
     ingredientList = r_includeIngredients[0]
 
@@ -77,6 +78,7 @@ def post():
     params['intolerances'] = intoleranceList
     params['diet'] = r_diet
     params['query'] = r_query
+    params['maxCalories'] = r_maxcal
 
     if len(ingredientList) == 0 and len(intoleranceList) == 0 and r_diet == "" and r_query == "":
         return render_template('result.html', code=1)
@@ -94,7 +96,7 @@ def post():
         image_url = result['image']
         url = result['sourceUrl']
 
-        timeToMake = str(results['results'][0]['servings']) + ' serving(s)'
+        timeToMake = calories + ' in ' + str(results['results'][0]['servings']) + ' serving(s)'
 
 
     except(IndexError):
@@ -102,9 +104,7 @@ def post():
     except(KeyError):
         return render_template('result.html', code=2)
 
-    return render_template('result.html', code=0, image=image_url, name=title + ' (' + calories + ')', time = timeToMake, url=url)
-
-    return render_template('result.html', code=0, image=image_url, name=title, url=url)
+    return render_template('result.html', code=0, image=image_url, name=title, time = timeToMake, url=url)
 
 # Carl TODO
 # TODO: Clear button
