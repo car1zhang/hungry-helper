@@ -20,11 +20,11 @@ params = {
     'type': '',
     'instructionsRequired': 'True',
     'fillIngredients': 'True',
-    'addRecipeInformation': 'True',  # TODO
+    'addRecipeInformation': '',  # TODO
     'addRecipeNutrition': 'True',  # TODO
-    'maxReadyTime': 'True',  # TODO
+    'maxReadyTime': '',  # TODO
     'ignorePantry': 'True',
-    'sort': 'meta-score',
+    'sort': 'max-used-ingredients',
     'maxCalories': '',
     'number': '1'
 }
@@ -47,6 +47,7 @@ def get_recipe(params):
 @app.route('/home')
 def main():
     return render_template('home.html', input='')
+
 
 @app.route("/", methods=['POST'])
 @app.route("/home", methods=['POST'])
@@ -93,7 +94,7 @@ def post():
     except(IndexError):
         top_result = 'Sorry, we do not have a recipe matching your search criteria. \n Please check your spelling and make sure all information was entered correctly'
 
-    return render_template('home.html', image=image_url, name=top_result, calories=calories)
+    return render_template('home.html', image=image_url, name=top_result + '(' + calories + ')')
 
 # Carl TODO
 # TODO: Format results
