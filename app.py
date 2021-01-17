@@ -7,7 +7,7 @@ app = Flask(__name__)
 search_url = 'https://api.spoonacular.com/recipes/complexSearch?'
 id_url = 'https://api.spoonacular.com/recipes/'
 empty_image_url = 'https://t4.ftcdn.net/jpg/01/92/21/99/360_F_192219965_or6uDv1LE5PvjjbTFxjpt6xM5OzoWvWA.jpg'
-api_key = '5340d48e470642c9822787b76b09fb1d'  # alternate key: 58dec5f444fb4942b7a123310f0eb653
+api_key = '58dec5f444fb4942b7a123310f0eb653'  # alternate key: 58dec5f444fb4942b7a123310f0eb653 5340d48e470642c9822787b76b09fb1d
 
 # Params for query
 params = {
@@ -21,7 +21,7 @@ params = {
     'instructionsRequired': 'True',
     'fillIngredients': 'True',
     'addRecipeInformation': 'True',  # TODO
-    'addRecipeNutrition': '',  # TODO
+    'addRecipeNutrition': 'True',  # TODO
     'maxReadyTime': '',  # TODO
     'ignorePantry': 'True',
     'sort': 'max-used-ingredients',  # or min-missing-ingredients
@@ -86,14 +86,20 @@ def post():
 
     try:
         result = results['results'][0]
+
+        calories = str(results['results'][0]['nutrition']['nutrients'][0]['amount']) + \
+                   ' ' + results['results'][0]['nutrition']['nutrients'][0]['unit']
+
         title = result['title']
         image_url = result['image']
         url = result['sourceUrl']
 
+        name = title + '(' + calories + ')'
+
     except(IndexError):
         return render_template('result.html', code=2)
 
-    return render_template('result.html', code=0, image=image_url, name=title, url=url)
+    return render_template('result.html', code=0, image=image_url, name=name, url=url)
 
 # Carl TODO
 # TODO: Format results
