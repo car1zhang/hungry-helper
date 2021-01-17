@@ -55,6 +55,8 @@ def post():
 
     r_includeIngredients = list(set(request.form.getlist('ingredients[]')))
     r_intolerances = list(set(request.form.getlist("restrictions[]")))
+    r_diet = request.form.get('diet')
+    r_query = request.form.get('query')
 
     ingredientList = ''
     intoleranceList = ''
@@ -73,6 +75,8 @@ def post():
     # Updating request params
     params['includeIngredients'] = ingredientList
     params['intolerances'] = intoleranceList
+    params['diet'] = r_diet
+    params['query'] = r_query
 
     results = get_recipe(params)
 
