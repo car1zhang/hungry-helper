@@ -94,7 +94,9 @@ def post():
         image_url = result['image']
         url = result['sourceUrl']
 
-        recipe_title = title + '(' + calories + ')'
+        recipe_title = title + ' (' + calories + ')'
+
+        timeToMake = str(results['results'][0]['readyInMinutes'])
 
     except(IndexError):
         return render_template('result.html', code=2)
@@ -109,5 +111,3 @@ def post():
 # TODO Optional: Make footer and about page
 # TODO Optional: Add interactive elements to the page
 # TODO Optional: Add help feature
-
-    # Hosted by ngrok  at http://c08dbd1b8351.ngrok.io/
