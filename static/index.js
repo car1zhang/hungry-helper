@@ -4,7 +4,7 @@ $(document).ready(() => {
     let ingredients = 1, restrictions = 1;
     $("#add-ingredient").click(() => {
         if(ingredients < 20) {
-            $("#ingredients").append('<input name="ingredients[]">');
+            $("#ingredients").append('<input name="ingredients[]" class="xtra">');
             ingredients++;
         } else if(!$("#ing-warn").length) {
             $("#ingredients").append('<p id="ing-warn" class="text-sm text-danger xtra">Search limited to 20 ingredients</p>');

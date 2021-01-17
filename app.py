@@ -95,16 +95,14 @@ def post():
         title = result['title']
         image_url = result['image']
         url = result['sourceUrl']
-
-        timeToMake = calories + ' in ' + str(results['results'][0]['servings']) + ' serving(s)'
-
+        servings = str(result['servings']) + ' serving(s)'
 
     except(IndexError):
         return render_template('result.html', code=2)
     except(KeyError):
         return render_template('result.html', code=2)
 
-    return render_template('result.html', code=0, image=image_url, name=title, time = timeToMake, url=url)
+    return render_template('result.html', code=0, image=image_url, name=title, servings=servings, url=url, cals=calories)
 
 # Carl TODO
 # TODO: Clear button
