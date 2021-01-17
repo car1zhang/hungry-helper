@@ -52,14 +52,10 @@ def main():
 @app.route("/", methods=['POST'])
 @app.route("/home", methods=['POST'])
 def post():
-
     r_includeIngredients = list(set(request.form.getlist('ingredients[]')))
     r_intolerances = list(set(request.form.getlist("restrictions[]")))
     r_diet = request.form.get('diet')
     r_query = request.form.get('query')
-
-    ingredientList = ''
-    intoleranceList = ''
 
     ingredientList = r_includeIngredients[0]
 
@@ -71,13 +67,13 @@ def post():
     for n in range(1, len(r_intolerances)):
         intoleranceList = (',' + r_intolerances[0])
 
-
-    # Updating request params
+    # Setting request params
     params['includeIngredients'] = ingredientList
     params['intolerances'] = intoleranceList
     params['diet'] = r_diet
     params['query'] = r_query
 
+    # Getting recipes from api
     results = get_recipe(params)
 
     top_result = ''
