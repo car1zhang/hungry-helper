@@ -20,9 +20,9 @@ params = {
     'type': '',
     'instructionsRequired': 'True',
     'fillIngredients': 'True',
-    'addRecipeInformation': '',
-    'addRecipeNutrition': '',
-    'maxReadyTime': '',
+    'addRecipeInformation': 'True',  # TODO
+    'addRecipeNutrition': 'True',  # TODO
+    'maxReadyTime': 'True',  # TODO
     'ignorePantry': 'True',
     'sort': 'calories',
     'maxCalories': '',
@@ -72,6 +72,9 @@ def post():
     params['intolerances'] = intoleranceList
     params['diet'] = r_diet
     params['query'] = r_query
+
+    if len(ingredientList) == 0 and len(intoleranceList) == 0 and r_diet == 0 and r_query == 0:
+        return render_template('home.html', name='Please enter some search criteria')
 
     # Getting recipes from api
     results = get_recipe(params)
