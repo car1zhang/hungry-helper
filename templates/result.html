@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>Hungry Helper</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab+Highlight:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300;400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename = 'main.css') }}">
+    </head>
+    <body class="c-dark-bg">
+        <nav class="navbar sticky-top navbar-dark c-darky-bg">
+            <div class="content">
+                <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename = 'HungryHelper.png') }}" alt="Hungry Helper"></a>
+            </div>
+        </nav>
+        <div class="jumbotron content c-light-bg result">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3 class="c-darky-text text-result"><b>Roast Pork Florentine With Pomegranate Sauce</b></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <a href="{{ url }}" class="btn btn-light c-darky-bg c-light-text" id="main-btn"><b>Instructions</b></a>
+                </div>
+                <div class="col-lg-6  text-right">
+                    <a href="{{ url_for('home') }}" class="btn btn-light c-dark-bg c-light-text" id="main-btn"><b>Back to Search</b></a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

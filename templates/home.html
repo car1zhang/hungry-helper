@@ -53,22 +53,21 @@
                         <div id="ingredients">
                             <input name="ingredients[]">
                         </div>
-                        <button type="button" class="btn btn-light text-butt c-light-text c-dark-bg" id="add-ingredient">Add Ingredient</button>
+                        <button type="button" class="btn btn-light text-butt c-light-text c-dark-bg" id="add-ingredient"><b>Add Ingredient</b></button>
                     </div>
                     <div class="col-lg-6">
-                        <h3 class="text-title c-darky-text text-right"><b>Restrictions</b></h3>
+                        <h3 class="text-title c-darky-text text-right"><b>Restrictions (e.g. allergies)</b></h3>
                         <div id="restrictions" class="text-right">
                             <input name="restrictions[]">
                         </div>
-                        <button type="button" class="float-right btn btn-light text-butt c-light-text c-dark-bg" id="add-restriction">Add Restriction</button>
+                        <button type="button" class="float-right btn btn-light text-butt c-light-text c-dark-bg" id="add-restriction"><b>Add Restriction</b></button>
                     </div>
                 </div>
                 <div class="row">
-                    <button type="submit" class="btn btn-light c-dark-bg c-light-text" id="search-btn"><b>Search</b></button>
+                    <button type="submit" class="btn btn-light c-dark-bg c-light-text" id="search-btn"><b>SEARCH</b></button>
                 </div>
             </form>
-            <p class="text-reg c-dark-text">{{name}}</p>
-            <img src="{{image}}" alt="{{name}}">
+            
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="{{ url_for('static', filename = 'index.js') }}"></script>

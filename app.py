@@ -20,8 +20,8 @@ params = {
     'type': '',
     'instructionsRequired': 'True',
     'fillIngredients': 'True',
-    'addRecipeInformation': '',  # TODO
-    'addRecipeNutrition': 'True',  # TODO
+    'addRecipeInformation': 'True',  # TODO
+    'addRecipeNutrition': '',  # TODO
     'maxReadyTime': '',  # TODO
     'ignorePantry': 'True',
     'sort': 'max-used-ingredients',  # or min-missing-ingredients
@@ -50,8 +50,8 @@ def get_recipe(params):
 
 @app.route('/')
 @app.route('/home')
-def main():
-    return render_template('home.html', input='')
+def home():
+    return render_template('home.html')
 
 
 @app.route("/", methods=['POST'])
@@ -78,36 +78,30 @@ def post():
     params['diet'] = r_diet
     params['query'] = r_query
 
+    if len(ingredientList) == 0 and len(intoleranceList) == 0 and r_diet == "" and r_query == "":
+        return render_template('result.html', code=1)
+
     # Getting recipes from api
     results = get_recipe(params)
 
-    top_result = ''
-    calories = ''
-    image_url = ''
-
-    if len(ingredientList) == 0 and len(intoleranceList) == 0 and r_diet == '' and r_query == '':
-        return render_template('home.html', name='Please enter some search criteria!')
-
     try:
-        top_result = results['results'][0]['title']
-
-        calories = str(results['results'][0]['nutrition']['nutrients'][0]['amount']) + \
-                   ' ' + results['results'][0]['nutrition']['nutrients'][0]['unit']
-
-        image_url = results['results'][0]['image']
+        result = results['results'][0]
+        title = result['title']
+        image_url = result['image']
+        url = result['sourceUrl']
 
     except(IndexError):
-        return render_template(
-            'home.html',
-            name='Sorry, we do not have a recipe matching your search criteria. \n Please check your spelling and make sure all information was entered correctly')
+        return render_template('result.html', code=2)
 
-    return render_template('home.html', image=image_url, name=top_result + ' (' + calories + ')')
+    return render_template('result.html', code=0, image=image_url, name=title, url=url)
 
-    # Carl TODO
-    # TODO: Format results
-    # TODO: Add more filters
-    # TODO Optional: Make footer and about page
-    # TODO Optional: Add interactive elements to the page
-    # TODO Optional: Add help feature
+# Carl TODO
+# TODO: Format results
+# TODO: Clear button
+# TODO: Delete button
+# TODO: Search by exclusive ingredients
+# TODO Optional: Make footer and about page
+# TODO Optional: Add interactive elements to the page
+# TODO Optional: Add help feature
 
     # Hosted by ngrok  at http://c08dbd1b8351.ngrok.io/

@@ -34,8 +34,15 @@ img {
 }
 
 .row {
-    margin-top: 80px;
+    margin-top: 0px;
     margin-bottom: 80px;
+}
+
+.result {
+    margin-top: 70px;
+    margin-bottom: 70px;
+    height: 670px;
+    padding: 60px;
 }
 
 #main-title {
@@ -59,6 +66,17 @@ img {
     font-family: 'Zilla Slab', serif;
     font-size: 72;
     margin: auto;
+    border-radius: 15px;
+}
+
+#main-btn {
+    width: 550px;
+    height: auto;
+    padding-top: 0px;
+    font-family: 'Zilla Slab', serif;
+    font-size: 72;
+    margin: auto;
+    border-radius: 15px;
 }
 
 input, select {
@@ -98,6 +116,10 @@ input, select {
 .text-title {
     font-family: 'Zilla Slab Highlight', cursive;
     font-size: 48;
+}
+.text-result {
+    font-family: 'Zilla Slab Highlight', cursive;
+    font-size: 72;
 }
 .btn {
     height: 40px;
