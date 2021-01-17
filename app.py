@@ -95,7 +95,7 @@ def post():
         title = result['title']
         image_url = result['image']
         url = result['sourceUrl']
-        servings = str(result['servings']) + ' serving(s)'
+        servings = calories + ' in ' + str(result['servings']) + ' serving(s)'
 
     except(IndexError):
         return render_template('result.html', code=2)
