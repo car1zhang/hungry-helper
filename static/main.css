@@ -1,37 +1,109 @@
-#main-title {
-    font: small-caps bold 150px/1 sans-serif;
-    color: #DEB841;
-}
-#title-text {
-    color: #D8DBE2;
-}
-
-body {
-    background-color: #DE9E36;
-}
-
-.bg-img {
+.title {
     background-image: url("https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 600px;
+    height: 540px;
+}
+
+img {
+    height: 86px;
+    width: auto;
 }
 
 .color-overlay {
     background-color: rgba(55, 50, 62, 0.8);
     background-position: center center;
-    height: 600px;
-    padding: 200px;
+    height: 540px;
 }
 
-.navbar-primary {
-    background-color: #DE9E36;
-    opacity: 1;
-    padding: 30px;
+.navbar {
+    height: 120px;
+}
+
+.content {
+    margin-left: 310px;
+    margin-right: 310px;
 }
 
 .form {
-    margin-top: 60px;
-    background-color: #D8DBE2;
+    margin-top: 70px;
+    margin-bottom: 70px;
+    border-radius: 20px;
+    padding: 60px;
+}
+
+.row {
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+#main-title {
+    font-family: 'Zilla Slab Highlight', cursive;
+    font-size: 192;
+    position: absolute;
+    top: 264px;
+    left: 512px;
+}
+
+#main-subtitle {
+    position: absolute;
+    top: 560px;
+    left: 326px;
+}
+
+#search-btn {
+    width: 400px;
+    height: auto;
+    padding: 0px;
+    font-family: 'Zilla Slab', serif;
+    font-size: 72;
+    margin: auto;
+}
+
+input, select {
+    height: 40px;
+    width: 480px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-radius: 0px;
+    border-width: 5px;
+    color: #37323E;
+    border-color: #37323E;
+    background-color: whitesmoke;
+    font-family: 'Source Serif Pro', serif;
+}
+
+.c-light-text { color: #D8DBE2; }
+.c-dark-text { color: #37323E; }
+.c-lighty-text { color: #DEB841; }
+.c-darky-text { color: #BE8324; }
+.c-light-bg { background-color: #D8DBE2; }
+.c-dark-bg { background-color: #37323E; }
+.c-lighty-bg { background-color: #DEB841; }
+.c-darky-bg { background-color: #BE8324; }
+.text-reg {
+    font-family: 'Source Serif Pro', serif;
+    font-size: 28;
+}
+.text-sm {
+    font-family: 'Source Serif Pro', serif;
+    font-size: 14;
+}
+.text-butt {
+    font-family: 'Zilla Slab', serif;
+    font-size: 24;
+}
+.text-title {
+    font-family: 'Zilla Slab Highlight', cursive;
+    font-size: 48;
+}
+.btn {
+    height: 40px;
+    padding-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
