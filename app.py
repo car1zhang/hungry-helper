@@ -20,9 +20,9 @@ params = {
     'type': '',
     'instructionsRequired': 'True',
     'fillIngredients': 'True',
-    'addRecipeInformation': '',
-    'addRecipeNutrition': '',
-    'maxReadyTime': '',
+    'addRecipeInformation': 'True',  # TODO
+    'addRecipeNutrition': 'True',  # TODO
+    'maxReadyTime': 'True',  # TODO
     'ignorePantry': 'True',
     'sort': 'meta-score',
     'maxCalories': '',
@@ -51,12 +51,10 @@ def main():
 @app.route("/", methods=['POST'])
 @app.route("/home", methods=['POST'])
 def post():
-
     r_includeIngredients = list(set(request.form.getlist('ingredients[]')))
     r_intolerances = list(set(request.form.getlist("restrictions[]")))
-
-    ingredientList = ''
-    intoleranceList = ''
+    r_diet = request.form.get('diet')
+    r_query = request.form.get('query')
 
     ingredientList = r_includeIngredients[0]
 
@@ -68,11 +66,16 @@ def post():
     for n in range(1, len(r_intolerances)):
         intoleranceList = (',' + r_intolerances[0])
 
-
-    # Updating request params
+    # Setting request params
     params['includeIngredients'] = ingredientList
     params['intolerances'] = intoleranceList
+    params['diet'] = r_diet
+    params['query'] = r_query
 
+    if len(ingredientList) == 0 and len(intoleranceList) == 0 and r_diet == 0 and r_query == 0:
+        return render_template('home.html', name='Please enter some search criteria')
+
+    # Getting recipes from api
     results = get_recipe(params)
 
     top_result = ''
