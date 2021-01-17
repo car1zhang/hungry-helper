@@ -6,7 +6,7 @@ app = Flask(__name__)
 # Api info
 search_url = 'https://api.spoonacular.com/recipes/complexSearch?'
 id_url = 'https://api.spoonacular.com/recipes/'
-
+empty_image_url = 'https://t4.ftcdn.net/jpg/01/92/21/99/360_F_192219965_or6uDv1LE5PvjjbTFxjpt6xM5OzoWvWA.jpg'
 api_key = '5340d48e470642c9822787b76b09fb1d'  # alternate key: 58dec5f444fb4942b7a123310f0eb653
 
 # Params for query
@@ -24,7 +24,7 @@ params = {
     'addRecipeNutrition': 'True',  # TODO
     'maxReadyTime': '',  # TODO
     'ignorePantry': 'True',
-    'sort': 'max-used-ingredients',
+    'sort': 'max-used-ingredients',  # or min-missing-ingredients
     'maxCalories': '',
     'number': '1'
 }
@@ -40,8 +40,13 @@ def get_recipe(params):
 
     results = requests.get(search_url + paramstring + '&apiKey=' + api_key).json()
 
+    # results = requests.get(search_url + paramstring + '&apiKey=' + api_key).json()
+    # print(results)
+
     return results
 
+
+# get_recipe(params)
 
 @app.route('/')
 @app.route('/home')
@@ -80,6 +85,9 @@ def post():
     calories = ''
     image_url = ''
 
+    if len(ingredientList) == 0 and len(intoleranceList) == 0 and r_diet == '' and r_query == '':
+        return render_template('home.html', name='Please enter some search criteria!')
+
     try:
         top_result = results['results'][0]['title']
 
@@ -89,18 +97,17 @@ def post():
         image_url = results['results'][0]['image']
 
     except(IndexError):
-        top_result = 'Sorry, we do not have a recipe matching your search criteria. \n Please check your spelling and make sure all information was entered correctly'
-
-    if len(ingredientList) == 0 and len(intoleranceList) == 0 and r_diet == 0 and r_query == 0:
-        return render_template('home.html', name='Please enter some search criteria')
+        return render_template(
+            'home.html',
+            name='Sorry, we do not have a recipe matching your search criteria. \n Please check your spelling and make sure all information was entered correctly')
 
     return render_template('home.html', image=image_url, name=top_result + ' (' + calories + ')')
 
-# Carl TODO
-# TODO: Format results
-# TODO: Add more filters
-# TODO Optional: Make footer and about page
-# TODO Optional: Add interactive elements to the page
-# TODO Optional: Add help feature
+    # Carl TODO
+    # TODO: Format results
+    # TODO: Add more filters
+    # TODO Optional: Make footer and about page
+    # TODO Optional: Add interactive elements to the page
+    # TODO Optional: Add help feature
 
-# Hosted by ngrok  at http://c08dbd1b8351.ngrok.io/
+    # Hosted by ngrok  at http://c08dbd1b8351.ngrok.io/
